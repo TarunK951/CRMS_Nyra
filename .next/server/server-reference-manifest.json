@@ -7,7 +7,8 @@
         "app/(dashboard)/rep/pipeline/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CCRMS_Nyra%5C%5Capp%5C%5Cactions%5C%5Cnotifications.ts%22%2C%5B%22markNotificationsRead%22%2C%22getUnreadCount%22%5D%5D%5D&__client_imported__=!",
         "app/(dashboard)/rep/activity/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CCRMS_Nyra%5C%5Capp%5C%5Cactions%5C%5Cnotifications.ts%22%2C%5B%22markNotificationsRead%22%2C%22getUnreadCount%22%5D%5D%5D&__client_imported__=!",
         "app/(dashboard)/rep/leaderboard/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CCRMS_Nyra%5C%5Capp%5C%5Cactions%5C%5Cnotifications.ts%22%2C%5B%22markNotificationsRead%22%2C%22getUnreadCount%22%5D%5D%5D&__client_imported__=!",
-        "app/(dashboard)/notifications/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CCRMS_Nyra%5C%5Capp%5C%5Cactions%5C%5Cnotifications.ts%22%2C%5B%22markNotificationsRead%22%2C%22getUnreadCount%22%5D%5D%5D&__client_imported__=!"
+        "app/(dashboard)/notifications/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CCRMS_Nyra%5C%5Capp%5C%5Cactions%5C%5Cnotifications.ts%22%2C%5B%22markNotificationsRead%22%2C%22getUnreadCount%22%5D%5D%5D&__client_imported__=!",
+        "app/(dashboard)/rep/leads/new/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CCRMS_Nyra%5C%5Capp%5C%5Cactions%5C%5Cnotifications.ts%22%2C%5B%22markNotificationsRead%22%2C%22getUnreadCount%22%5D%5D%5D&__client_imported__=!"
       },
       "layer": {
         "app/(dashboard)/rep/page": "rsc",
@@ -15,7 +16,8 @@
         "app/(dashboard)/rep/pipeline/page": "rsc",
         "app/(dashboard)/rep/activity/page": "rsc",
         "app/(dashboard)/rep/leaderboard/page": "rsc",
-        "app/(dashboard)/notifications/page": "rsc"
+        "app/(dashboard)/notifications/page": "rsc",
+        "app/(dashboard)/rep/leads/new/page": "rsc"
       }
     },
     "e7cf049a8bf8311538ac4b87a0a7636d7a7b5459": {
@@ -25,7 +27,8 @@
         "app/(dashboard)/rep/pipeline/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CCRMS_Nyra%5C%5Capp%5C%5Cactions%5C%5Cnotifications.ts%22%2C%5B%22markNotificationsRead%22%2C%22getUnreadCount%22%5D%5D%5D&__client_imported__=!",
         "app/(dashboard)/rep/activity/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CCRMS_Nyra%5C%5Capp%5C%5Cactions%5C%5Cnotifications.ts%22%2C%5B%22markNotificationsRead%22%2C%22getUnreadCount%22%5D%5D%5D&__client_imported__=!",
         "app/(dashboard)/rep/leaderboard/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CCRMS_Nyra%5C%5Capp%5C%5Cactions%5C%5Cnotifications.ts%22%2C%5B%22markNotificationsRead%22%2C%22getUnreadCount%22%5D%5D%5D&__client_imported__=!",
-        "app/(dashboard)/notifications/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CCRMS_Nyra%5C%5Capp%5C%5Cactions%5C%5Cnotifications.ts%22%2C%5B%22markNotificationsRead%22%2C%22getUnreadCount%22%5D%5D%5D&__client_imported__=!"
+        "app/(dashboard)/notifications/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CCRMS_Nyra%5C%5Capp%5C%5Cactions%5C%5Cnotifications.ts%22%2C%5B%22markNotificationsRead%22%2C%22getUnreadCount%22%5D%5D%5D&__client_imported__=!",
+        "app/(dashboard)/rep/leads/new/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CCRMS_Nyra%5C%5Capp%5C%5Cactions%5C%5Cnotifications.ts%22%2C%5B%22markNotificationsRead%22%2C%22getUnreadCount%22%5D%5D%5D&__client_imported__=!"
       },
       "layer": {
         "app/(dashboard)/rep/page": "rsc",
@@ -33,23 +36,28 @@
         "app/(dashboard)/rep/pipeline/page": "rsc",
         "app/(dashboard)/rep/activity/page": "rsc",
         "app/(dashboard)/rep/leaderboard/page": "rsc",
-        "app/(dashboard)/notifications/page": "rsc"
+        "app/(dashboard)/notifications/page": "rsc",
+        "app/(dashboard)/rep/leads/new/page": "rsc"
       }
     },
     "0173d957510822b25fff2b2ab7bfbd80212413aa": {
       "workers": {
-        "app/(dashboard)/rep/pipeline/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CCRMS_Nyra%5C%5Capp%5C%5Cactions%5C%5Cleads.ts%22%2C%5B%22updateLeadStatus%22%2C%22updateLeadNextFollowUp%22%2C%22createLead%22%5D%5D%5D&__client_imported__=true!"
+        "app/(dashboard)/rep/pipeline/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CCRMS_Nyra%5C%5Capp%5C%5Cactions%5C%5Cleads.ts%22%2C%5B%22updateLeadStatus%22%2C%22updateLeadNextFollowUp%22%2C%22createLead%22%5D%5D%5D&__client_imported__=true!",
+        "app/(dashboard)/rep/leads/new/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CCRMS_Nyra%5C%5Capp%5C%5Cactions%5C%5Cleads.ts%22%2C%5B%22updateLeadStatus%22%2C%22updateLeadNextFollowUp%22%2C%22createLead%22%5D%5D%5D&__client_imported__=true!"
       },
       "layer": {
-        "app/(dashboard)/rep/pipeline/page": "action-browser"
+        "app/(dashboard)/rep/pipeline/page": "action-browser",
+        "app/(dashboard)/rep/leads/new/page": "action-browser"
       }
     },
     "d8bbb00374c5ecc6837d88dad2ddbb3d8f946b9a": {
       "workers": {
-        "app/(dashboard)/rep/pipeline/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CCRMS_Nyra%5C%5Capp%5C%5Cactions%5C%5Cleads.ts%22%2C%5B%22updateLeadStatus%22%2C%22updateLeadNextFollowUp%22%2C%22createLead%22%5D%5D%5D&__client_imported__=true!"
+        "app/(dashboard)/rep/pipeline/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CCRMS_Nyra%5C%5Capp%5C%5Cactions%5C%5Cleads.ts%22%2C%5B%22updateLeadStatus%22%2C%22updateLeadNextFollowUp%22%2C%22createLead%22%5D%5D%5D&__client_imported__=true!",
+        "app/(dashboard)/rep/leads/new/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CCRMS_Nyra%5C%5Capp%5C%5Cactions%5C%5Cleads.ts%22%2C%5B%22updateLeadStatus%22%2C%22updateLeadNextFollowUp%22%2C%22createLead%22%5D%5D%5D&__client_imported__=true!"
       },
       "layer": {
-        "app/(dashboard)/rep/pipeline/page": "action-browser"
+        "app/(dashboard)/rep/pipeline/page": "action-browser",
+        "app/(dashboard)/rep/leads/new/page": "action-browser"
       }
     },
     "e61da7f2d1da197926159e8070ce012252e33d24": {
@@ -62,10 +70,12 @@
     },
     "435e7bfebc6acfb544a911297402752290933020": {
       "workers": {
-        "app/(dashboard)/rep/pipeline/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CCRMS_Nyra%5C%5Capp%5C%5Cactions%5C%5Cleads.ts%22%2C%5B%22updateLeadStatus%22%2C%22updateLeadNextFollowUp%22%2C%22createLead%22%5D%5D%5D&__client_imported__=true!"
+        "app/(dashboard)/rep/pipeline/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CCRMS_Nyra%5C%5Capp%5C%5Cactions%5C%5Cleads.ts%22%2C%5B%22updateLeadStatus%22%2C%22updateLeadNextFollowUp%22%2C%22createLead%22%5D%5D%5D&__client_imported__=true!",
+        "app/(dashboard)/rep/leads/new/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22D%3A%5C%5CCRMS_Nyra%5C%5Capp%5C%5Cactions%5C%5Cleads.ts%22%2C%5B%22updateLeadStatus%22%2C%22updateLeadNextFollowUp%22%2C%22createLead%22%5D%5D%5D&__client_imported__=true!"
       },
       "layer": {
-        "app/(dashboard)/rep/pipeline/page": "action-browser"
+        "app/(dashboard)/rep/pipeline/page": "action-browser",
+        "app/(dashboard)/rep/leads/new/page": "action-browser"
       }
     }
   },

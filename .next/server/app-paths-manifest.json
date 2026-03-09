@@ -1,7 +1,8 @@
 {
   "/(dashboard)/rep/page": "app/(dashboard)/rep/page.js",
-  "/(dashboard)/rep/leads/page": "app/(dashboard)/rep/leads/page.js",
   "/(dashboard)/rep/activity/page": "app/(dashboard)/rep/activity/page.js",
+  "/(dashboard)/rep/leads/page": "app/(dashboard)/rep/leads/page.js",
   "/(dashboard)/rep/leaderboard/page": "app/(dashboard)/rep/leaderboard/page.js",
-  "/(dashboard)/rep/pipeline/page": "app/(dashboard)/rep/pipeline/page.js"
+  "/(dashboard)/rep/pipeline/page": "app/(dashboard)/rep/pipeline/page.js",
+  "/(dashboard)/rep/leads/new/page": "app/(dashboard)/rep/leads/new/page.js"
 }
