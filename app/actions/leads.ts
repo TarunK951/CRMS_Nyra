@@ -12,22 +12,23 @@ export async function createLead(
   const supabase = await createClient();
   const monthly = formData.get("monthly_appointments");
   const branchCount = formData.get("branch_count");
+  const nextFollowUpRaw = formData.get("next_follow_up");
+  const next_follow_up = nextFollowUpRaw && String(nextFollowUpRaw).trim() ? String(nextFollowUpRaw).trim() : null;
 
-  const nextFollowUp = formData.get("next_follow_up") as string | null;
   const payload = {
-    clinic_name: String(formData.get("clinic_name") ?? ""),
-    doctor_name: String(formData.get("doctor_name") ?? ""),
-    specialization: String(formData.get("specialization") ?? ""),
-    phone: String(formData.get("phone") ?? ""),
-    address: String(formData.get("address") ?? ""),
-    area: String(formData.get("area") ?? ""),
-    city: String(formData.get("city") ?? ""),
-    monthly_appointments: monthly ? Number(monthly) : null,
-    branch_count: branchCount ? Number(branchCount) : 1,
-    lead_source: String(formData.get("lead_source") ?? ""),
+    clinic_name: String(formData.get("clinic_name") ?? "").trim(),
+    doctor_name: String(formData.get("doctor_name") ?? "").trim(),
+    specialization: String(formData.get("specialization") ?? "").trim(),
+    phone: String(formData.get("phone") ?? "").trim(),
+    address: String(formData.get("address") ?? "").trim(),
+    area: String(formData.get("area") ?? "").trim(),
+    city: String(formData.get("city") ?? "").trim(),
+    monthly_appointments: monthly !== undefined && monthly !== null && monthly !== "" ? Number(monthly) : null,
+    branch_count: branchCount !== undefined && branchCount !== null && branchCount !== "" ? Number(branchCount) : 1,
+    lead_source: String(formData.get("lead_source") ?? "").trim(),
     lead_status: (formData.get("lead_status") as LeadStatus) ?? "new_lead",
+    next_follow_up,
     ...(assignToRepId ? { assigned_rep_id: assignToRepId } : {}),
-    ...(existingId && nextFollowUp !== undefined ? { next_follow_up: nextFollowUp || null } : {}),
   };
 
   if (existingId) {
