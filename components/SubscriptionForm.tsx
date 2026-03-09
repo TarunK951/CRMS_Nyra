@@ -30,7 +30,7 @@ export default function SubscriptionForm({ leadId }: { leadId: string }) {
       <div className="grid gap-3 sm:grid-cols-2">
         <div>
           <label className="block text-sm font-medium text-foreground mb-1">Plan type</label>
-          <select name="plan_type" required className="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground">
+          <select name="plan_type" required className="w-full input-focus rounded-button border border-border bg-background px-3 py-2 text-foreground">
             {PLAN_TYPES.map((p) => (
               <option key={p} value={p}>{PLAN_LABELS[p]}</option>
             ))}
@@ -38,7 +38,7 @@ export default function SubscriptionForm({ leadId }: { leadId: string }) {
         </div>
         <div>
           <label className="block text-sm font-medium text-foreground mb-1">Contract type</label>
-          <select name="contract_type" required className="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground">
+          <select name="contract_type" required className="w-full input-focus rounded-button border border-border bg-background px-3 py-2 text-foreground">
             {CONTRACT_TYPES.map((c) => (
               <option key={c} value={c}>{CONTRACT_LABELS[c]}</option>
             ))}
@@ -48,24 +48,24 @@ export default function SubscriptionForm({ leadId }: { leadId: string }) {
       <div className="grid gap-3 sm:grid-cols-2">
         <div>
           <label className="block text-sm font-medium text-foreground mb-1">Start date</label>
-          <input name="start_date" type="date" required defaultValue={start} className="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground" />
+          <input name="start_date" type="date" required defaultValue={start} className="w-full input-focus rounded-button border border-border bg-background px-3 py-2 text-foreground" />
         </div>
         <div>
           <label className="block text-sm font-medium text-foreground mb-1">Renewal date</label>
-          <input name="renewal_date" type="date" required defaultValue={defaultRenewal} className="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground" />
+          <input name="renewal_date" type="date" required defaultValue={defaultRenewal} className="w-full input-focus rounded-button border border-border bg-background px-3 py-2 text-foreground" />
         </div>
       </div>
       <div className="grid gap-3 sm:grid-cols-2">
         <div>
           <label className="block text-sm font-medium text-foreground mb-1">Minutes allocation</label>
-          <input name="minutes_allocation" type="number" min={0} className="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground" />
+          <input name="minutes_allocation" type="number" min={0} className="w-full input-focus rounded-button border border-border bg-background px-3 py-2 text-foreground" />
         </div>
         <div>
           <label className="block text-sm font-medium text-foreground mb-1">Branch count</label>
-          <input name="branch_count" type="number" min={1} defaultValue={1} className="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground" />
+          <input name="branch_count" type="number" min={1} defaultValue={1} className="w-full input-focus rounded-button border border-border bg-background px-3 py-2 text-foreground" />
         </div>
       </div>
-      <button type="submit" disabled={loading} className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 disabled:opacity-50">
+      <button type="submit" disabled={loading} className="btn-primary disabled:opacity-50">
         {loading ? "Saving..." : "Add subscription"}
       </button>
     </form>

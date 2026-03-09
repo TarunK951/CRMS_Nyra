@@ -78,7 +78,7 @@ export function PipelineBoard({ initialLeads, repId }: PipelineBoardProps) {
       </div>
       <DragOverlay>
         {activeLead ? (
-          <div className="rounded-lg border border-border bg-card p-3 shadow-lg w-[220px] opacity-95">
+          <div className="rounded-button border border-border bg-card p-3 shadow-card w-[220px] opacity-95">
             <p className="font-medium text-foreground truncate">{activeLead.clinic_name}</p>
             <p className="text-xs text-muted-foreground truncate">{activeLead.doctor_name}</p>
           </div>

@@ -3,38 +3,42 @@
 @tailwind utilities;
 
 :root {
-  --background: 210 20% 98%;
-  --foreground: 222 47% 11%;
+  --background: 0 0% 99%;
+  --foreground: 240 10% 10%;
   --card: 0 0% 100%;
-  --card-foreground: 222 47% 11%;
-  --primary: 221 83% 53%;
+  --card-foreground: 240 10% 10%;
+  /* Light primary: #1b7b8c */
+  --primary: 189 68% 33%;
   --primary-foreground: 0 0% 100%;
-  --secondary: 210 40% 96%;
-  --secondary-foreground: 222 47% 11%;
-  --muted: 210 40% 96%;
-  --muted-foreground: 215 16% 47%;
-  --accent: 210 40% 96%;
-  --accent-foreground: 222 47% 11%;
-  --destructive: 0 84% 60%;
-  --border: 214 32% 91%;
-  --ring: 221 83% 53%;
+  --secondary: 240 5% 96%;
+  --secondary-foreground: 240 6% 20%;
+  --muted: 240 5% 96%;
+  --muted-foreground: 240 4% 46%;
+  --accent: 240 5% 96%;
+  --accent-foreground: 240 6% 20%;
+  --destructive: 0 72% 51%;
+  --border: 240 6% 90%;
+  --ring: 189 68% 33%;
+  --radius: 0.5rem;
 }
 
 .dark {
-  --background: 222 47% 11%;
-  --foreground: 210 40% 98%;
-  --card: 222 47% 11%;
-  --card-foreground: 210 40% 98%;
-  --primary: 210 40% 98%;
-  --primary-foreground: 222 47% 11%;
-  --secondary: 217 33% 17%;
-  --secondary-foreground: 210 40% 98%;
-  --muted: 217 33% 17%;
-  --muted-foreground: 215 20% 65%;
-  --accent: 217 33% 17%;
-  --accent-foreground: 210 40% 98%;
-  --destructive: 0 62% 50%;
-  --border: 217 33% 17%;
+  --background: 240 10% 6%;
+  --foreground: 0 0% 98%;
+  --card: 240 10% 9%;
+  --card-foreground: 0 0% 98%;
+  /* Dark primary: #2a9db3 */
+  --primary: 190 62% 43%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 240 5% 15%;
+  --secondary-foreground: 0 0% 98%;
+  --muted: 240 5% 15%;
+  --muted-foreground: 240 5% 65%;
+  --accent: 240 5% 15%;
+  --accent-foreground: 0 0% 98%;
+  --destructive: 0 62% 45%;
+  --border: 240 5% 18%;
+  --ring: 190 62% 43%;
 }
 
 body {
@@ -43,10 +47,16 @@ body {
 
 @layer components {
   .card-hover {
-    @apply transition-shadow duration-200 hover:shadow-card-hover;
+    @apply transition-all duration-200 hover:shadow-lg hover:border-primary/20;
   }
   .input-focus {
-    @apply focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary;
+    @apply focus:outline-none focus:ring-2 focus:ring-ring/30 focus:border-primary;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-[var(--radius)] bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground shadow-sm hover:bg-primary/90 transition-colors;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-[var(--radius)] border border-border bg-card px-4 py-2.5 text-sm font-medium hover:bg-muted transition-colors;
   }
   .scrollbar-hide {
     -ms-overflow-style: none;

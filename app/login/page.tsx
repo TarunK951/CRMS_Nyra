@@ -40,61 +40,45 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-muted/30 px-4">
-      <div className="w-full max-w-sm rounded-card border border-border bg-card p-6 shadow-card">
-        <div className="flex justify-center mb-4">
-          <img src="/logo.svg" alt="Nyra" className="h-14 w-auto object-contain" />
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-muted/50 to-background px-4">
+      <div className="w-full max-w-[400px] rounded-button border border-border bg-card p-8 shadow-card">
+        <div className="flex justify-center mb-6">
+          <img src="/logo.svg" alt="Nyra" className="h-12 w-auto object-contain" />
         </div>
-        <h1 className="text-xl font-semibold text-card-foreground text-center mb-2">
-          Nyra Sales Command Center
-        </h1>
-        <p className="text-sm text-muted-foreground text-center mb-6">
-          Sign in to your account
-        </p>
+        <h1 className="text-center text-xl font-semibold text-foreground">Sign in</h1>
+        <p className="text-center text-sm text-muted-foreground mt-1 mb-6">Nyra Sales Command Center</p>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-foreground mb-1">
-              Email
-            </label>
+            <label htmlFor="email" className="block text-sm font-medium text-foreground mb-1.5">Email</label>
             <input
               id="email"
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full rounded-button border border-border bg-background px-3 py-2.5 text-sm text-foreground placeholder:text-muted-foreground input-focus"
               placeholder="you@example.com"
             />
           </div>
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-foreground mb-1">
-              Password
-            </label>
+            <label htmlFor="password" className="block text-sm font-medium text-foreground mb-1.5">Password</label>
             <input
               id="password"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              className="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full rounded-button border border-border bg-background px-3 py-2.5 text-sm text-foreground placeholder:text-muted-foreground input-focus"
             />
           </div>
-          {error && (
-            <p className="text-sm text-destructive">{error}</p>
-          )}
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 disabled:opacity-50"
-          >
-            {loading ? "Signing in..." : "Sign in"}
+          {error && <p className="text-sm text-destructive">{error}</p>}
+          <button type="submit" disabled={loading} className="btn-primary w-full">
+            {loading ? "Signing in…" : "Sign in"}
           </button>
         </form>
-        <p className="mt-4 text-center text-sm text-muted-foreground">
-          Don&apos;t have an account?{" "}
-          <Link href="/signup" className="text-primary hover:underline">
-            Sign up
-          </Link>
+        <p className="mt-6 text-center text-sm text-muted-foreground">
+          No account?{" "}
+          <Link href="/signup" className="font-medium text-primary hover:underline">Sign up</Link>
         </p>
       </div>
     </div>

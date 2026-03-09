@@ -47,7 +47,7 @@ export default async function ClinicProfilePage({ params }: { params: Promise<{ 
         </span>
       </div>
 
-      <section className="rounded-card border border-border bg-card p-5 shadow-card">
+      <section className="rounded-button border border-border bg-card p-5 shadow-card">
         <h2 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-4">Basic information</h2>
         <dl className="grid gap-3 text-sm sm:grid-cols-2">
           <div><dt className="text-muted-foreground">Phone</dt><dd className="text-foreground font-medium">{lead.phone || "—"}</dd></div>
@@ -67,12 +67,12 @@ export default async function ClinicProfilePage({ params }: { params: Promise<{ 
         <Link href={`/clinic/${id}/edit`} className="mt-4 inline-block text-sm font-medium text-primary hover:underline">Edit full lead</Link>
       </section>
 
-      <section className="rounded-card border border-border bg-card p-5 shadow-card">
+      <section className="rounded-button border border-border bg-card p-5 shadow-card">
         <h2 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-4">Notes from sales rep</h2>
         <ClinicActivityForm leadId={id} />
       </section>
 
-      <section className="rounded-card border border-border bg-card p-5 shadow-card">
+      <section className="rounded-button border border-border bg-card p-5 shadow-card">
         <h2 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-4">Communication history & timeline</h2>
         <ul className="space-y-4">
           {activities.length === 0 ? (
@@ -93,13 +93,13 @@ export default async function ClinicProfilePage({ params }: { params: Promise<{ 
         </ul>
       </section>
 
-      <section className="rounded-card border border-border bg-card p-5 shadow-card">
+      <section className="rounded-button border border-border bg-card p-5 shadow-card">
         <h2 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-4">Add sprint (15-day trial)</h2>
         <SprintForm leadId={id} />
       </section>
 
       {sprints.length > 0 && (
-        <section className="rounded-card border border-border bg-card p-5 shadow-card">
+        <section className="rounded-button border border-border bg-card p-5 shadow-card">
           <h2 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-4">Sprint performance summary</h2>
           <ul className="space-y-4">
             {sprints.map((s: { id: string; start_date: string; end_date: string; status: string; appointment_confirmations?: number | null; calls_handled?: number | null; rescheduled?: number | null; feedback?: string | null }) => (
@@ -117,13 +117,13 @@ export default async function ClinicProfilePage({ params }: { params: Promise<{ 
         </section>
       )}
 
-      <section className="rounded-card border border-border bg-card p-5 shadow-card">
+      <section className="rounded-button border border-border bg-card p-5 shadow-card">
         <h2 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-4">Subscription details</h2>
         <SubscriptionForm leadId={id} />
       </section>
 
       {subscriptions.length > 0 && (
-        <section className="rounded-card border border-border bg-card p-5 shadow-card">
+        <section className="rounded-button border border-border bg-card p-5 shadow-card">
           <h2 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-4">Active subscriptions</h2>
           <ul className="space-y-2 text-sm">
             {subscriptions.map((s: { id: string; plan_type: string; contract_type: string; start_date: string; renewal_date: string; minutes_allocation?: number | null }) => (

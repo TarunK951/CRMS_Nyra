@@ -1,6 +1,7 @@
 import { createClient } from "@/lib/supabase/server";
 import { format, startOfMonth, endOfMonth } from "date-fns";
 import Link from "next/link";
+import { RepProgressCharts } from "@/components/RepProgressCharts";
 
 export default async function AdminRepsPage() {
   const supabase = await createClient();
@@ -27,18 +28,57 @@ export default async function AdminRepsPage() {
     .select("rep_id, clinic_visits, doctor_meetings, pitches_delivered, sprints_sold, subscriptions_closed")
     .eq("date", now.toISOString().slice(0, 10));
 
+  const { data: monthActivities } = await supabase
+    .from("daily_activities")
+    .select("rep_id, clinic_visits, doctor_meetings, pitches_delivered, sprints_sold, subscriptions_closed")
+    .gte("date", monthStart)
+    .lte("date", monthEnd);
+
   const dailyByRep = new Map(dailyToday?.map((d) => [d.rep_id, d]) ?? []);
+
+  const monthByRep = new Map<
+    string,
+    { visits: number; meetings: number; pitches: number; sprints: number; subs: number }
+  >();
+  for (const r of reps ?? []) {
+    monthByRep.set(r.id, { visits: 0, meetings: 0, pitches: 0, sprints: 0, subs: 0 });
+  }
+  for (const a of monthActivities ?? []) {
+    const row = monthByRep.get(a.rep_id);
+    if (row) {
+      row.visits += a.clinic_visits ?? 0;
+      row.meetings += a.doctor_meetings ?? 0;
+      row.pitches += a.pitches_delivered ?? 0;
+      row.sprints += a.sprints_sold ?? 0;
+      row.subs += a.subscriptions_closed ?? 0;
+    }
+  }
+  const monthChartData = (reps ?? []).map((r) => ({
+    name: (r.full_name ?? "—").split(" ")[0] || "Rep",
+    fullName: r.full_name ?? "—",
+    visits: monthByRep.get(r.id)?.visits ?? 0,
+    meetings: monthByRep.get(r.id)?.meetings ?? 0,
+    pitches: monthByRep.get(r.id)?.pitches ?? 0,
+    sprints: monthByRep.get(r.id)?.sprints ?? 0,
+    subs: monthByRep.get(r.id)?.subs ?? 0,
+    points: leaderboard.find((l) => l.rep_id === r.id)?.points ?? 0,
+  }));
 
   return (
     <div className="space-y-8">
-      <h1 className="text-2xl font-semibold text-foreground">Rep performance</h1>
+      <div>
+        <h1 className="text-xl font-bold text-foreground">Team progress</h1>
+        <p className="text-sm text-muted-foreground mt-0.5">View everyone&apos;s data and compare reps</p>
+      </div>
+
+      <RepProgressCharts data={monthChartData} monthLabel={format(now, "MMMM yyyy")} />
 
       <section>
-        <h2 className="text-lg font-medium text-foreground mb-3">Leaderboard (this month — {format(now, "MMMM yyyy")})</h2>
-        <div className="rounded-xl border border-border overflow-hidden">
+        <h2 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-3">Leaderboard — {format(now, "MMMM yyyy")}</h2>
+        <div className="rounded-button border border-border overflow-hidden bg-card shadow-card">
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-border bg-muted/50">
+              <tr className="border-b border-border bg-muted/30">
                 <th className="px-4 py-3 text-left font-medium text-foreground">Rank</th>
                 <th className="px-4 py-3 text-left font-medium text-foreground">Rep</th>
                 <th className="px-4 py-3 text-right font-medium text-foreground">Points</th>
@@ -58,11 +98,11 @@ export default async function AdminRepsPage() {
       </section>
 
       <section>
-        <h2 className="text-lg font-medium text-foreground mb-3">Today&apos;s activity</h2>
-        <div className="rounded-xl border border-border overflow-hidden">
+        <h2 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-3">Today&apos;s activity</h2>
+        <div className="rounded-button border border-border overflow-hidden bg-card shadow-card">
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-border bg-muted/50">
+              <tr className="border-b border-border bg-muted/30">
                 <th className="px-4 py-3 text-left font-medium text-foreground">Rep</th>
                 <th className="px-4 py-3 text-right font-medium text-foreground">Visits</th>
                 <th className="px-4 py-3 text-right font-medium text-foreground">Meetings</th>
@@ -88,7 +128,7 @@ export default async function AdminRepsPage() {
             </tbody>
           </table>
         </div>
-        <Link href="/admin/war-room" className="mt-2 inline-block text-sm text-primary hover:underline">Daily War Room →</Link>
+        <Link href="/admin/war-room" className="btn-secondary mt-3">Daily War Room →</Link>
       </section>
     </div>
   );

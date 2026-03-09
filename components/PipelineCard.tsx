@@ -18,7 +18,7 @@ export function PipelineCard({ lead }: PipelineCardProps) {
       ref={setNodeRef}
       {...listeners}
       {...attributes}
-      className={`rounded-lg border border-border bg-card p-3 shadow-sm hover:shadow cursor-grab active:cursor-grabbing ${isDragging ? "opacity-50" : ""}`}
+      className={`rounded-button border border-border bg-card p-3 shadow-card hover:shadow cursor-grab active:cursor-grabbing ${isDragging ? "opacity-50" : ""}`}
     >
       <Link href={`/clinic/${lead.id}`} className="block" onClick={(e) => e.stopPropagation()}>
         <p className="font-medium text-foreground truncate text-sm">{lead.clinic_name}</p>

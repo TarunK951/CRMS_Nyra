@@ -46,12 +46,12 @@ export default async function WarRoomPage({
         <h1 className="text-2xl font-semibold text-foreground">Daily War Room</h1>
         <form method="get" className="flex items-center gap-2">
           <label className="text-sm text-muted-foreground">Date</label>
-          <input type="date" name="date" defaultValue={date} className="rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground" />
-          <button type="submit" className="rounded-lg bg-primary px-3 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90">View</button>
+          <input type="date" name="date" defaultValue={date} className="input-focus rounded-button border border-border bg-background px-3 py-2 text-sm text-foreground" />
+          <button type="submit" className="btn-primary">View</button>
         </form>
       </div>
       <p className="text-sm text-muted-foreground">Rep | Visits | Meetings | Pitches | Sprints | Subs — {format(new Date(date), "PPP")}</p>
-      <div className="overflow-x-auto rounded-card border border-border bg-card shadow-card">
+      <div className="overflow-x-auto rounded-button border border-border bg-card shadow-card">
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b border-border bg-muted/50">

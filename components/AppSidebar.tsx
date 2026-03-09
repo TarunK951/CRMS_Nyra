@@ -8,7 +8,6 @@ import {
   LayoutDashboard,
   Users,
   Kanban,
-  FileText,
   CreditCard,
   Trophy,
   Calendar,
@@ -53,33 +52,33 @@ export function AppSidebar({ userEmail, userRole, unreadCount = 0 }: AppSidebarP
   }
 
   return (
-    <aside className="hidden lg:flex lg:flex-col lg:w-56 lg:fixed lg:inset-y-0 lg:z-20 lg:border-r lg:border-border lg:bg-card">
+    <aside className="hidden lg:flex lg:flex-col lg:w-52 lg:fixed lg:inset-y-0 lg:z-20 lg:border-r lg:border-border lg:bg-card">
       <div className="flex h-14 items-center gap-2 px-4 border-b border-border">
-        <img src="/logo.svg" alt="Nyra" className="h-8 w-auto" />
-        <span className="font-semibold text-foreground">Nyra CRM</span>
+        <img src="/logo.svg" alt="Nyra" className="h-7 w-auto" />
+        <span className="font-semibold text-sm text-foreground">Nyra CRM</span>
       </div>
-      <nav className="flex-1 overflow-y-auto p-3 space-y-0.5">
+      <nav className="flex-1 overflow-y-auto p-2 space-y-0.5">
         {links.map(({ href, label, icon: Icon }) => (
           <Link
             key={href}
             href={href}
-            className={`flex items-center gap-3 rounded-button px-3 py-2.5 text-sm font-medium transition-colors ${
+            className={`flex items-center gap-2.5 rounded-button px-3 py-2.5 text-sm font-medium transition-colors ${
               pathname === href
                 ? "bg-primary text-primary-foreground"
                 : "text-muted-foreground hover:bg-muted hover:text-foreground"
             }`}
           >
-            <Icon className="h-5 w-5 shrink-0" />
+            <Icon className="h-4 w-4 shrink-0" />
             {label}
           </Link>
         ))}
       </nav>
-      <div className="p-3 border-t border-border space-y-1">
+      <div className="p-2 border-t border-border space-y-0.5">
         <Link
           href="/notifications"
-          className="flex items-center gap-3 rounded-button px-3 py-2.5 text-sm text-muted-foreground hover:bg-muted hover:text-foreground relative"
+          className="flex items-center gap-2.5 rounded-button px-3 py-2.5 text-sm text-muted-foreground hover:bg-muted hover:text-foreground relative"
         >
-          <Bell className="h-5 w-5 shrink-0" />
+          <Bell className="h-4 w-4 shrink-0" />
           Notifications
           {unreadCount > 0 && (
             <span className="ml-auto h-5 min-w-[20px] rounded-full bg-primary px-1.5 text-xs font-medium text-primary-foreground flex items-center justify-center">
@@ -92,9 +91,9 @@ export function AppSidebar({ userEmail, userRole, unreadCount = 0 }: AppSidebarP
         </div>
         <button
           onClick={handleSignOut}
-          className="flex w-full items-center gap-3 rounded-button px-3 py-2.5 text-sm text-muted-foreground hover:bg-muted hover:text-foreground"
+          className="flex w-full items-center gap-2.5 rounded-button px-3 py-2.5 text-sm text-muted-foreground hover:bg-muted hover:text-foreground"
         >
-          <LogOut className="h-5 w-5 shrink-0" />
+          <LogOut className="h-4 w-4 shrink-0" />
           Sign out
         </button>
       </div>

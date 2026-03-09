@@ -3,7 +3,7 @@ import { createClient } from "@/lib/supabase/server";
 import { CommandCenterCharts } from "@/components/CommandCenterCharts";
 import { SeedButton } from "@/components/SeedButton";
 import { LEAD_STATUS_LABELS } from "@/types/database";
-import { format, subMonths, startOfMonth } from "date-fns";
+import { format, subMonths, startOfMonth, subDays } from "date-fns";
 import type { LeadStatus } from "@/types/database";
 
 const PIPELINE_STAGES: LeadStatus[] = [
@@ -42,14 +42,22 @@ export default async function AdminCommandCenter() {
     allSubs,
     repsRes,
     gamificationRes,
+    subsWithLeadRes,
+    dailyActivitiesRes,
   ] = await Promise.all([
     supabase.from("leads").select("id", { count: "exact", head: true }),
     supabase.from("sprints").select("id", { count: "exact", head: true }).eq("status", "active"),
     supabase.from("subscriptions").select("id, plan_type, contract_type", { count: "exact", head: false }),
-    supabase.from("leads").select("id, lead_status, created_at"),
+    supabase.from("leads").select("id, lead_status, created_at, assigned_rep_id"),
     supabase.from("subscriptions").select("id, created_at"),
     supabase.from("profiles").select("id, full_name").eq("role", "sales_rep"),
     supabase.from("gamification_events").select("rep_id, points"),
+    supabase.from("subscriptions").select("lead_id, leads(assigned_rep_id)"),
+    supabase
+      .from("daily_activities")
+      .select("date, clinic_visits, doctor_meetings, pitches_delivered, sprints_sold, subscriptions_closed")
+      .gte("date", subDays(new Date(), 13).toISOString().slice(0, 10))
+      .order("date", { ascending: true }),
   ]);
 
   const totalLeads = leadsRes.count ?? 0;
@@ -60,6 +68,22 @@ export default async function AdminCommandCenter() {
   const subsCreated = allSubs.data ?? [];
   const reps = repsRes.data ?? [];
   const events = gamificationRes.data ?? [];
+  const subsWithLead = (subsWithLeadRes.data ?? []) as { lead_id: string; leads: { assigned_rep_id: string | null } | null }[];
+  const dailyActivities = dailyActivitiesRes.data ?? [];
+
+  const repSubsCount = new Map<string, number>();
+  for (const r of reps) repSubsCount.set(r.id, 0);
+  for (const row of subsWithLead) {
+    const repId = row.leads?.assigned_rep_id;
+    if (repId) repSubsCount.set(repId, (repSubsCount.get(repId) ?? 0) + 1);
+  }
+
+  const repLeadsCount = new Map<string, number>();
+  for (const r of reps) repLeadsCount.set(r.id, 0);
+  for (const l of leads) {
+    const rid = l.assigned_rep_id;
+    if (rid) repLeadsCount.set(rid, (repLeadsCount.get(rid) ?? 0) + 1);
+  }
 
   let mrr = 0;
   for (const s of subscriptions) {
@@ -88,7 +112,8 @@ export default async function AdminCommandCenter() {
   const repPerformance = reps.map((r) => ({
     name: (r.full_name ?? "—").split(" ")[0] || "Rep",
     points: repPoints.get(r.id) ?? 0,
-    subs: 0,
+    subs: repSubsCount.get(r.id) ?? 0,
+    leads: repLeadsCount.get(r.id) ?? 0,
   }));
 
   const months = Array.from({ length: 6 }, (_, i) => {
@@ -101,52 +126,81 @@ export default async function AdminCommandCenter() {
     subs: subsCreated.filter((s) => s.created_at?.slice(0, 7) === key).length,
   }));
 
+  const last14Days = Array.from({ length: 14 }, (_, i) => {
+    const d = subDays(new Date(), 13 - i);
+    return d.toISOString().slice(0, 10);
+  });
+  const byDate = new Map<string, { visits: number; meetings: number; pitches: number; sprints: number; subs: number }>();
+  for (const day of last14Days) {
+    byDate.set(day, { visits: 0, meetings: 0, pitches: 0, sprints: 0, subs: 0 });
+  }
+  for (const a of dailyActivities) {
+    const row = byDate.get(a.date);
+    if (row) {
+      row.visits += a.clinic_visits ?? 0;
+      row.meetings += a.doctor_meetings ?? 0;
+      row.pitches += a.pitches_delivered ?? 0;
+      row.sprints += a.sprints_sold ?? 0;
+      row.subs += a.subscriptions_closed ?? 0;
+    }
+  }
+  const dailyActivityTrend = last14Days.map((day) => {
+    const r = byDate.get(day)!;
+    return {
+      date: format(new Date(day), "dd MMM"),
+      visits: r.visits,
+      meetings: r.meetings,
+      pitches: r.pitches,
+      sprints: r.sprints,
+      subs: r.subs,
+    };
+  });
+
   return (
-    <div className="space-y-8">
+    <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-foreground tracking-tight">Command Center</h1>
-        <p className="text-sm text-muted-foreground mt-1">High-level insights and analytics</p>
+        <h1 className="text-xl font-bold text-foreground">Command Center</h1>
+        <p className="text-sm text-muted-foreground mt-0.5">Insights and analytics</p>
       </div>
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <Link href="/admin/leads" className="rounded-card border border-border bg-card p-5 shadow-card card-hover">
-          <p className="text-sm font-medium text-muted-foreground">Total Leads</p>
+      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <Link href="/admin/leads" className="rounded-button border border-border bg-card p-5 shadow-card card-hover">
+          <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Total Leads</p>
           <p className="text-2xl font-bold text-foreground mt-1">{totalLeads}</p>
         </Link>
-        <Link href="/admin/pipeline" className="rounded-card border border-border bg-card p-5 shadow-card card-hover">
-          <p className="text-sm font-medium text-muted-foreground">Active Pipeline Value</p>
+        <Link href="/admin/pipeline" className="rounded-button border border-border bg-card p-5 shadow-card card-hover">
+          <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Pipeline Value</p>
           <p className="text-2xl font-bold text-foreground mt-1">₹{pipelineValueEst.toLocaleString()}</p>
-          <p className="text-xs text-muted-foreground mt-0.5">{pipelineLeadCount} open leads</p>
+          <p className="text-xs text-muted-foreground mt-0.5">{pipelineLeadCount} open</p>
         </Link>
-        <div className="rounded-card border border-border bg-card p-5 shadow-card">
-          <p className="text-sm font-medium text-muted-foreground">Sprints Running</p>
+        <div className="rounded-button border border-border bg-card p-5 shadow-card">
+          <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Sprints Running</p>
           <p className="text-2xl font-bold text-foreground mt-1">{sprintsRunning}</p>
         </div>
-        <div className="rounded-card border border-border bg-card p-5 shadow-card">
-          <p className="text-sm font-medium text-muted-foreground">Sprint Conversion Rate</p>
+        <div className="rounded-button border border-border bg-card p-5 shadow-card">
+          <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Conversion</p>
           <p className="text-2xl font-bold text-foreground mt-1">{conversionRate}%</p>
         </div>
-        <Link href="/admin/subscriptions" className="rounded-card border border-border bg-card p-5 shadow-card card-hover">
-          <p className="text-sm font-medium text-muted-foreground">Active Subscriptions</p>
+        <Link href="/admin/subscriptions" className="rounded-button border border-border bg-card p-5 shadow-card card-hover">
+          <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Subscriptions</p>
           <p className="text-2xl font-bold text-foreground mt-1">{activeSubscriptions}</p>
         </Link>
-        <div className="rounded-card border border-border bg-card p-5 shadow-card">
-          <p className="text-sm font-medium text-muted-foreground">Monthly Recurring Revenue</p>
+        <div className="rounded-button border border-border bg-card p-5 shadow-card">
+          <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">MRR</p>
           <p className="text-2xl font-bold text-foreground mt-1">₹{Math.round(mrr).toLocaleString()}</p>
         </div>
       </div>
-      <div className="flex flex-wrap items-center gap-3">
-        <Link href="/admin/war-room" className="rounded-button bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground hover:bg-primary/90">
-          Daily War Room
-        </Link>
-        <Link href="/admin/leads" className="rounded-button border border-border px-4 py-2.5 text-sm font-medium hover:bg-muted">
-          Leads
-        </Link>
-        <Link href="/admin/pipeline" className="rounded-button border border-border px-4 py-2.5 text-sm font-medium hover:bg-muted">
-          Pipeline
-        </Link>
+      <div className="flex flex-wrap items-center gap-2">
+        <Link href="/admin/war-room" className="btn-primary">War Room</Link>
+        <Link href="/admin/leads" className="btn-secondary">Leads</Link>
+        <Link href="/admin/pipeline" className="btn-secondary">Pipeline</Link>
         <SeedButton />
       </div>
-      <CommandCenterCharts funnel={funnel} repPerformance={repPerformance} monthlyAcquisition={monthlyAcquisition} />
+      <CommandCenterCharts
+        funnel={funnel}
+        repPerformance={repPerformance}
+        monthlyAcquisition={monthlyAcquisition}
+        dailyActivityTrend={dailyActivityTrend}
+      />
     </div>
   );
 }

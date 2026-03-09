@@ -31,7 +31,7 @@ export default async function RepLeaderboardPage() {
     <div className="space-y-6">
       <h1 className="text-2xl font-semibold text-foreground">Leaderboard</h1>
       <p className="text-sm text-muted-foreground">Resets monthly. Your rank: <strong>{myRank}</strong> · Your points: <strong>{myPoints}</strong> ({format(now, "MMMM yyyy")})</p>
-      <div className="rounded-xl border border-border overflow-hidden">
+      <div className="rounded-button border border-border overflow-hidden">
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b border-border bg-muted/50">

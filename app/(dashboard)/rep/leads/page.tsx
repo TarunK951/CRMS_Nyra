@@ -20,11 +20,11 @@ export default async function RepLeadsPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-semibold text-foreground">My Leads</h1>
-        <Link href="/rep/leads/new" className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90">
+        <Link href="/rep/leads/new" className="btn-primary">
           Add lead
         </Link>
       </div>
-      <div className="overflow-x-auto rounded-xl border border-border">
+      <div className="overflow-x-auto rounded-button border border-border bg-card shadow-card">
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b border-border bg-muted/50">

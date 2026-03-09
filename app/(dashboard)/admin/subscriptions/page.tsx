@@ -35,12 +35,12 @@ export default async function AdminSubscriptionsPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-semibold text-foreground">Subscriptions</h1>
-        <div className="rounded-xl border border-border bg-card px-4 py-2">
+        <div className="rounded-button border border-border bg-card px-4 py-2">
           <p className="text-xs text-muted-foreground">MRR (est.)</p>
           <p className="text-xl font-semibold text-foreground">₹{Math.round(mrr).toLocaleString()}</p>
         </div>
       </div>
-      <div className="overflow-x-auto rounded-xl border border-border">
+      <div className="overflow-x-auto rounded-button border border-border">
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b border-border bg-muted/50">

@@ -12,7 +12,7 @@ export default async function AdminPipelinePage() {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-semibold text-foreground">Pipeline</h1>
+      <h1 className="text-xl font-bold text-foreground">Pipeline</h1>
       <PipelineBoard initialLeads={(leads ?? []) as Lead[]} repId={user?.id ?? null} />
     </div>
   );

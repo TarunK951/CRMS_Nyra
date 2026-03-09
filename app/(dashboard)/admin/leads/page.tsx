@@ -14,14 +14,12 @@ export default async function AdminLeadsPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-semibold text-foreground">Leads</h1>
-        <Link href="/admin/leads/new" className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90">
-          Add lead
-        </Link>
+        <Link href="/admin/leads/new" className="btn-primary">Add lead</Link>
       </div>
-      <div className="overflow-x-auto rounded-card border border-border bg-card shadow-card">
+      <div className="overflow-x-auto rounded-button border border-border bg-card shadow-card">
         <table className="w-full text-sm">
           <thead>
-            <tr className="border-b border-border bg-muted/50">
+            <tr className="border-b border-border bg-muted/30">
               <th className="px-4 py-3 text-left font-medium text-foreground">Clinic</th>
               <th className="px-4 py-3 text-left font-medium text-foreground">Doctor</th>
               <th className="px-4 py-3 text-left font-medium text-foreground">City</th>

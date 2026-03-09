@@ -29,30 +29,30 @@ export default function DailyActivityForm({
   }
 
   return (
-    <form onSubmit={handleSubmit} className="rounded-xl border border-border bg-card p-4 space-y-4">
+    <form onSubmit={handleSubmit} className="rounded-button border border-border bg-card p-4 space-y-4 shadow-card">
       <div className="grid gap-4 sm:grid-cols-2">
         <div>
           <label className="block text-sm font-medium text-foreground mb-1">Clinic visits</label>
-          <input type="number" min={0} value={visits} onChange={(e) => setVisits(Number(e.target.value))} className="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground" />
+          <input type="number" min={0} value={visits} onChange={(e) => setVisits(Number(e.target.value))} className="w-full input-focus rounded-button border border-border bg-background px-3 py-2 text-foreground" />
         </div>
         <div>
           <label className="block text-sm font-medium text-foreground mb-1">Doctor meetings</label>
-          <input type="number" min={0} value={meetings} onChange={(e) => setMeetings(Number(e.target.value))} className="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground" />
+          <input type="number" min={0} value={meetings} onChange={(e) => setMeetings(Number(e.target.value))} className="w-full input-focus rounded-button border border-border bg-background px-3 py-2 text-foreground" />
         </div>
         <div>
           <label className="block text-sm font-medium text-foreground mb-1">Pitches delivered</label>
-          <input type="number" min={0} value={pitches} onChange={(e) => setPitches(Number(e.target.value))} className="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground" />
+          <input type="number" min={0} value={pitches} onChange={(e) => setPitches(Number(e.target.value))} className="w-full input-focus rounded-button border border-border bg-background px-3 py-2 text-foreground" />
         </div>
         <div>
           <label className="block text-sm font-medium text-foreground mb-1">Sprints sold</label>
-          <input type="number" min={0} value={sprints} onChange={(e) => setSprints(Number(e.target.value))} className="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground" />
+          <input type="number" min={0} value={sprints} onChange={(e) => setSprints(Number(e.target.value))} className="w-full input-focus rounded-button border border-border bg-background px-3 py-2 text-foreground" />
         </div>
         <div>
           <label className="block text-sm font-medium text-foreground mb-1">Subscriptions closed</label>
-          <input type="number" min={0} value={subs} onChange={(e) => setSubs(Number(e.target.value))} className="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground" />
+          <input type="number" min={0} value={subs} onChange={(e) => setSubs(Number(e.target.value))} className="w-full input-focus rounded-button border border-border bg-background px-3 py-2 text-foreground" />
         </div>
       </div>
-      <button type="submit" disabled={loading} className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 disabled:opacity-50">
+      <button type="submit" disabled={loading} className="btn-primary disabled:opacity-50">
         {loading ? "Saving..." : "Save daily activity"}
       </button>
     </form>

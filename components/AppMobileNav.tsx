@@ -42,27 +42,27 @@ export function AppMobileNav({ userEmail, userRole, unreadCount = 0 }: AppMobile
   }
 
   return (
-    <header className="lg:hidden sticky top-0 z-10 border-b border-border bg-card/95 backdrop-blur">
-      <div className="flex h-14 items-center justify-between px-4">
+    <header className="lg:hidden sticky top-0 z-10 border-b border-border bg-card">
+      <div className="flex h-13 items-center justify-between px-4">
         <Link href={userRole === "admin" || userRole === "operations" ? "/admin" : "/rep"} className="flex items-center gap-2">
-          <img src="/logo.svg" alt="Nyra" className="h-7 w-auto" />
-          <span className="font-semibold text-foreground text-sm">Nyra CRM</span>
+          <img src="/logo.svg" alt="Nyra" className="h-6 w-auto" />
+          <span className="font-semibold text-sm text-foreground">Nyra CRM</span>
         </Link>
-        <div className="flex items-center gap-2">
-          <Link href="/notifications" className="relative p-2 text-muted-foreground hover:text-foreground rounded-button">
+        <div className="flex items-center gap-1">
+          <Link href="/notifications" className="relative p-2.5 text-muted-foreground hover:text-foreground rounded-button">
             <Bell className="h-5 w-5" />
             {unreadCount > 0 && (
-              <span className="absolute top-1 right-1 h-4 w-4 rounded-full bg-primary text-[10px] font-medium text-primary-foreground flex items-center justify-center">
+              <span className="absolute top-1.5 right-1.5 h-4 w-4 rounded-full bg-primary text-[10px] font-medium text-primary-foreground flex items-center justify-center">
                 {unreadCount > 9 ? "9+" : unreadCount}
               </span>
             )}
           </Link>
-          <button onClick={handleSignOut} className="p-2 text-muted-foreground hover:text-foreground rounded-button" aria-label="Sign out">
+          <button onClick={handleSignOut} className="p-2.5 text-muted-foreground hover:text-foreground rounded-button" aria-label="Sign out">
             <LogOut className="h-5 w-5" />
           </button>
         </div>
       </div>
-      <nav className="flex gap-1 overflow-x-auto px-3 pb-2 scrollbar-hide">
+      <nav className="flex gap-1.5 overflow-x-auto px-3 pb-2.5 scrollbar-hide">
         {links.map(({ href, label }) => (
           <Link
             key={href}

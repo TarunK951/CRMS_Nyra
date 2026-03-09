@@ -33,7 +33,7 @@ export function SeedButton() {
         type="button"
         onClick={handleSeed}
         disabled={loading}
-        className="rounded-lg border border-border px-4 py-2 text-sm font-medium hover:bg-muted disabled:opacity-50"
+        className="btn-secondary disabled:opacity-50"
       >
         {loading ? "Seeding..." : "Add sample data"}
       </button>

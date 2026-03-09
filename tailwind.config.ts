@@ -8,6 +8,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
+      },
       colors: {
         border: "hsl(var(--border))",
         background: "hsl(var(--background))",
@@ -20,11 +23,14 @@ const config: Config = {
         card: { DEFAULT: "hsl(var(--card))", foreground: "hsl(var(--card-foreground))" },
         ring: "hsl(var(--ring))",
       },
-      fontFamily: { sans: ["var(--font-geist-sans)", "system-ui", "sans-serif"] },
-      borderRadius: { card: "0.75rem", button: "0.5rem" },
+      borderRadius: {
+        card: "var(--radius)",
+        button: "var(--radius)",
+        lg: "calc(var(--radius) + 0.25rem)",
+      },
       boxShadow: {
-        card: "0 1px 3px 0 rgb(0 0 0 / 0.05), 0 1px 2px -1px rgb(0 0 0 / 0.05)",
-        "card-hover": "0 4px 6px -1px rgb(0 0 0 / 0.07), 0 2px 4px -2px rgb(0 0 0 / 0.05)",
+        card: "0 1px 2px 0 rgb(0 0 0 / 0.03)",
+        "card-hover": "0 4px 12px -2px rgb(0 0 0 / 0.08)",
       },
     },
   },

@@ -21,7 +21,7 @@ export default async function NotificationsPage() {
       <h1 className="text-2xl font-semibold text-foreground">Notifications</h1>
       <ul className="space-y-2">
         {(list ?? []).map((n: { id: string; title: string; body: string | null; read: boolean; created_at: string }) => (
-          <li key={n.id} className={`rounded-lg border border-border bg-card p-3 ${!n.read ? "border-primary/50" : ""}`}>
+          <li key={n.id} className={`rounded-button border border-border bg-card p-3 shadow-card ${!n.read ? "border-primary/50" : ""}`}>
             <p className="font-medium text-foreground">{n.title}</p>
             {n.body && <p className="text-sm text-muted-foreground mt-1">{n.body}</p>}
             <p className="text-xs text-muted-foreground mt-2">{format(new Date(n.created_at), "PPp")}</p>

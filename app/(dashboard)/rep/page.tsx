@@ -41,47 +41,45 @@ export default async function RepDashboard() {
       <section>
         <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3">Today</h2>
         <div className="grid gap-3 grid-cols-2 sm:grid-cols-5">
-          <div className="rounded-card border border-border bg-card p-4 shadow-card">
+          <div className="rounded-button border border-border bg-card p-4 shadow-card">
             <p className="text-xs text-muted-foreground">Visits</p>
             <p className="text-xl font-bold text-foreground">{todayActivity?.clinic_visits ?? 0}</p>
           </div>
-          <div className="rounded-card border border-border bg-card p-4 shadow-card">
+          <div className="rounded-button border border-border bg-card p-4 shadow-card">
             <p className="text-xs text-muted-foreground">Meetings</p>
             <p className="text-xl font-bold text-foreground">{todayActivity?.doctor_meetings ?? 0}</p>
           </div>
-          <div className="rounded-card border border-border bg-card p-4 shadow-card">
+          <div className="rounded-button border border-border bg-card p-4 shadow-card">
             <p className="text-xs text-muted-foreground">Pitches</p>
             <p className="text-xl font-bold text-foreground">{todayActivity?.pitches_delivered ?? 0}</p>
           </div>
-          <div className="rounded-card border border-border bg-card p-4 shadow-card">
+          <div className="rounded-button border border-border bg-card p-4 shadow-card">
             <p className="text-xs text-muted-foreground">Sprints</p>
             <p className="text-xl font-bold text-foreground">{todayActivity?.sprints_sold ?? 0}</p>
           </div>
-          <div className="rounded-card border border-border bg-card p-4 shadow-card">
+          <div className="rounded-button border border-border bg-card p-4 shadow-card">
             <p className="text-xs text-muted-foreground">Subs</p>
             <p className="text-xl font-bold text-foreground">{todayActivity?.subscriptions_closed ?? 0}</p>
           </div>
         </div>
-        <Link href="/rep/activity" className="inline-block mt-3 rounded-button bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground hover:bg-primary/90">
-          Log daily activity
-        </Link>
+        <Link href="/rep/activity" className="btn-primary mt-3">Log daily activity</Link>
       </section>
       <section>
         <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3">This month ({format(new Date(), "MMMM")})</h2>
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          <div className="rounded-card border border-border bg-card p-4 shadow-card">
+          <div className="rounded-button border border-border bg-card p-4 shadow-card">
             <p className="text-xs text-muted-foreground">Subscriptions closed</p>
             <p className="text-xl font-bold text-foreground">{mySubsThisMonth}</p>
           </div>
-          <div className="rounded-card border border-border bg-card p-4 shadow-card">
+          <div className="rounded-button border border-border bg-card p-4 shadow-card">
             <p className="text-xs text-muted-foreground">Revenue (est.)</p>
             <p className="text-xl font-bold text-foreground">₹{revenueEst.toLocaleString()}</p>
           </div>
-          <div className="rounded-card border border-border bg-card p-4 shadow-card">
+          <div className="rounded-button border border-border bg-card p-4 shadow-card">
             <p className="text-xs text-muted-foreground">Conversion rate</p>
             <p className="text-xl font-bold text-foreground">{conversionRate}%</p>
           </div>
-          <div className="rounded-card border border-border bg-card p-4 shadow-card">
+          <div className="rounded-button border border-border bg-card p-4 shadow-card">
             <p className="text-xs text-muted-foreground">Points</p>
             <p className="text-xl font-bold text-foreground">{monthlyPoints}</p>
           </div>
@@ -89,17 +87,17 @@ export default async function RepDashboard() {
       </section>
       <section>
         <div className="flex flex-wrap items-center gap-3">
-          <Link href="/rep/leads" className="rounded-card border border-border bg-card p-5 shadow-card card-hover flex-1 min-w-[140px]">
-            <p className="text-sm font-medium text-muted-foreground">My Leads</p>
-            <p className="text-2xl font-bold text-foreground mt-1">{totalLeads}</p>
+          <Link href="/rep/leads" className="rounded-button border border-border bg-card p-5 shadow-card card-hover flex-1 min-w-[120px]">
+            <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">My Leads</p>
+            <p className="text-xl font-bold text-foreground mt-1">{totalLeads}</p>
           </Link>
-          <Link href="/rep/pipeline" className="rounded-card border border-border bg-card p-5 shadow-card card-hover flex-1 min-w-[140px]">
-            <p className="text-sm font-medium text-muted-foreground">Pipeline</p>
-            <p className="text-2xl font-bold text-foreground mt-1">View</p>
+          <Link href="/rep/pipeline" className="rounded-button border border-border bg-card p-5 shadow-card card-hover flex-1 min-w-[120px]">
+            <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Pipeline</p>
+            <p className="text-xl font-bold text-foreground mt-1">View</p>
           </Link>
-          <Link href="/rep/leaderboard" className="rounded-card border border-border bg-card p-5 shadow-card card-hover flex-1 min-w-[140px]">
-            <p className="text-sm font-medium text-muted-foreground">Leaderboard</p>
-            <p className="text-2xl font-bold text-foreground mt-1">→</p>
+          <Link href="/rep/leaderboard" className="rounded-button border border-border bg-card p-5 shadow-card card-hover flex-1 min-w-[120px]">
+            <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Leaderboard</p>
+            <p className="text-xl font-bold text-foreground mt-1">→</p>
           </Link>
         </div>
         <div className="flex flex-wrap gap-3 mt-4">

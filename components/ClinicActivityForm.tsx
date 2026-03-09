@@ -62,7 +62,7 @@ export default function ClinicActivityForm({ leadId }: { leadId: string }) {
       <select
         value={activityType}
         onChange={(e) => setActivityType(e.target.value as "visit" | "meeting" | "note")}
-        className="rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground"
+        className="input-focus rounded-button border border-border bg-background px-3 py-2 text-sm text-foreground"
       >
         <option value="note">Note</option>
         <option value="visit">Visit</option>
@@ -74,7 +74,7 @@ export default function ClinicActivityForm({ leadId }: { leadId: string }) {
           onChange={(e) => setContent(e.target.value)}
           placeholder="Add a note... (or use voice input)"
           rows={3}
-          className="w-full rounded-lg border border-border bg-background px-3 py-2 pr-10 text-sm text-foreground placeholder:text-muted-foreground"
+          className="input-focus w-full rounded-button border border-border bg-background px-3 py-2 pr-10 text-sm text-foreground placeholder:text-muted-foreground"
         />
         {supportsVoice && (
           <div className="absolute right-2 top-2">
@@ -90,7 +90,7 @@ export default function ClinicActivityForm({ leadId }: { leadId: string }) {
           </div>
         )}
       </div>
-      <button type="submit" disabled={loading} className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 disabled:opacity-50">
+      <button type="submit" disabled={loading} className="btn-primary disabled:opacity-50">
         {loading ? "Saving..." : "Add activity"}
       </button>
     </form>
